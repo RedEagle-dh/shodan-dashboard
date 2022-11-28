@@ -1,0 +1,9 @@
+{
+  "error": "An error occurred while executing this command. Please try to correct your input. If the error is still there, contact the developer.",
+  "botdev": "Bot developer: RedEagle#0400",
+  "successAddCategory": "You successfully added a new game category (dropdown menu) to the opt-in feature.\n\nYou can now add games to this category with the command `/addgame`",
+  "successRemoveCategory": "You successfully removed a game category (dropdown menu) from the opt-in feature.\n\nYou can no longer add games to this category and you have to reload the opt-in feature.",
+  "errorDeleteCategory": "No such category found. Please try again and check your spelling.",
+  "successRemoveGame": "You successfully removed a game from a category from the opt-in feature.",
+  "errorDeleteGame": "No such game or category found. Please try again and check your spelling."
+}
