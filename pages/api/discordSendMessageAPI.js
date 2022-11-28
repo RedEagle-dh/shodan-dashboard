@@ -6,7 +6,7 @@ export default function handler(req, res) {
         content: req.body.text
     }, {
         headers: {
-            Authorization: `Bot MTAyMTg1NzEwNjA4MjY3MjcyMQ.GftBwA.7A4ghb4f4-9tTQTOPjJFVY9U32a4cx6z8zqhDI`,
+            Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
         }
     }).then((data) => {
         res.status(200);

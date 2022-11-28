@@ -1,15 +1,16 @@
 const mysql = require("mysql");
+const DATABASE = `${process.env.DB_DB}`;
 
 const pool = mysql.createPool({
-    host: "localhost",
-    user: 'root',
-    password: 'RedEagle#0400farkas@1971mysql',
-    database: 'shodan'
+    host: `${process.env.DB_NAME}`,
+    user: `${process.env.DB_USER}`,
+    password: `${process.env.DB_PASSWORD}`,
+    database: DATABASE
 })
 
 
 export default function getUsers(req, res) {
-    const user_query = "SELECT * FROM shodan.user";
+    const user_query = `SELECT * FROM ${DATABASE}.user`;
     pool.query(user_query, (err, result, fields) => {
         if (err) {
             console.log(err);
