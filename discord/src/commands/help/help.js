@@ -8,6 +8,7 @@ module.exports = {
         .setDescription("You need help? Here you go!")
     ,
     async execute(event) {
+        // FIXME Error when clicking on Select Menu
         const mainHelpEb = new EmbedBuilder().setTitle("Help? - Here you go!").setColor("#2F3136")
             .setDescription("Just select a section below to get more information about the commands and their usage.\n\n" +
                 "<:roleowner:1021588449519751180> Only admins can use this command\n" +

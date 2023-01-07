@@ -1,11 +1,21 @@
-require('dotenv').config({path: "../.env"});
-const connection = require('mysql2');
+require('dotenv').config({path: "../.env"})
+const Redis = require("ioredis")
+const { Logger } = require("../../Log/log");
+const __Log = new Logger();
+const { exit } = require('process');
 
-module.exports = connection.createPool({
-    host: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    waitForConnections: true,
-    connectionLimit: 100,
-    queueLimit: 0
-});
+
+function getDatabase() {
+    try {
+        const __Database = new Redis("redis://localhost:6379")
+        __Log.info("Successfully connected to database!")
+        return __Database
+    } catch (e) {
+        __Log.fatal(`Error while trying to connect to database - ${e}`)
+        exit();
+    }
+}
+
+
+
+module.exports = { getDatabase }

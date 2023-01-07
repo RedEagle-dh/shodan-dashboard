@@ -1,7 +1,6 @@
-const {SlashCommandBuilder} = require("discord.js");
-const {getResult, insert} = require("../../database/dbFunctions");
-const {getNewId} = require("../../functions/idHandler");
-const {getErrorEmbed, getSuccessEmbed} = require("../../embed/embedCreation");
+const { SlashCommandBuilder } = require("discord.js");
+const { getErrorEmbed, getSuccessEmbed } = require("../../embed/embedCreation");
+const { getDocument, setDocument } = require("../../functions/optinfunctions");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("addgame")
@@ -12,21 +11,35 @@ module.exports = {
         .addStringOption(option => option.setName("emoji").setDescription("The emoji to use for the game").setRequired(true))
         .addStringOption(option => option.setName("description").setDescription("The description of the game").setRequired(true)),
 
-    async execute(event) {
+    async execute(event, db, log) {
         const emoji = event.options.getString("emoji");
         const name = event.options.getString("name");
         const role = event.options.getRole("role");
-        const category = event.options.getString("category");
+        const category = event.options.getString("category").toLowerCase();
         const description = event.options.getString("description");
 
-        const res = await getResult(`SELECT * FROM shodan.gamecategories WHERE name = '${category}'`);
-        if (res.length === 0) {
-            event.reply({embeds: [getErrorEmbed(`The game category (dropdown menu) with the name/id ${category} does not exist. Please create it first with /addcategory`)], ephemeral: true});
-            return;
+        const doc = await getDocument(db, "optin");
+        if (doc[category]) {
+            if (doc[category].selections.find(obj => obj.name.toLowerCase() === name.toLowerCase())) {
+                event.reply({ embeds: [getErrorEmbed(`The game with the name/id ${name} exists already. Please choose another name!`)], ephemeral: true });
+            } else {
+                doc[category].selections.push({
+                    emoji: emoji,
+                    name: name,
+                    description: description,
+                    category: category,
+                    role: role.id
+                })
+                const back = await setDocument(db, doc, "optin");
+                if (back === "OK") {
+                    event.reply({ embeds: [getSuccessEmbed(`Successfully added the data below to the category (dropdown menu) \`${category}\`\n\n**Name:** ${name}\n**Role:** ${role}\n**Emoji:** ${emoji}\n**Description:** ${description}`)] });
+                } else {
+                    event.reply({ embeds: [getErrorEmbed("There was an error adding the data")] });
+                    log.error("Couldn't add the game to the category.")
+                }
+            }
+        } else {
+            event.reply({ embeds: [getErrorEmbed(`The game category (dropdown menu) with the name/id ${category} does not exist. Please create it first with /addcategory`)], ephemeral: true });
         }
-        const oldMaxId = await getResult(`SELECT MAX(id) as id FROM shodan.games`);
-        const newId = getNewId(oldMaxId);
-        await insert(`INSERT INTO shodan.games (id, name, roleid, optinid, emoji, description) VALUES ('${newId}', '${name}', '${role.id}', '${res[0].id}', '${emoji}', '${description}')`);
-        event.reply({embeds: [getSuccessEmbed(`Successfully added the data below to the category (dropdown menu) \`${category}\`\n\n**Name:** ${name}\n**Role:** ${role}\n**Emoji:** ${emoji}\n**Description:** ${description}`)]});
     }
 }

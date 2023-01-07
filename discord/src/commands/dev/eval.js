@@ -1,5 +1,4 @@
 const {SlashCommandBuilder, EmbedBuilder, AttachmentBuilder} = require("discord.js");
-const pool = require("../../database/connection")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("eval")
@@ -7,7 +6,7 @@ module.exports = {
         .addSubcommand(subcommand => subcommand.setName("invisible").setDescription("Evaluate javascript code inivisble").addStringOption(option => option.setName("code").setDescription("The code to evaluate").setRequired(true)))
         .addSubcommand(subcommand => subcommand.setName("visible").setDescription("Evaluate javascript code visible").addStringOption(option => option.setName("code").setDescription("The code to evaluate").setRequired(true)))
     ,
-    async execute(event) {
+    async execute(event, db, log) {
         const code = event.options.getString("code");
         if (event.member.id !== "324890484944404480") {
             const eb = new EmbedBuilder().setColor("Red").addFields({

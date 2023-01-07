@@ -1,12 +1,13 @@
 const {SlashCommandBuilder} = require("discord.js");
-const replyMessages = require("./replies.json");
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("talk")
         .setDescription("N"),
 
-    async execute(event) {
-        const msg = replyMessages.talk[Math.floor(Math.random() * replyMessages.talk.length)];
+    async execute(event, db) {
+        const replyMessages = JSON.parse(await db.get("answers")).talk;
+        const msg = replyMessages[Math.floor(Math.random() * replyMessages.length)];
         event.reply(msg);
     }
 }

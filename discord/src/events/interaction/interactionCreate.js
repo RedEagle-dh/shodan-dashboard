@@ -1,4 +1,5 @@
 const {EmbedBuilder} = require("discord.js");
+
 const msg = require("../../messages.json");
 const {InteractionType} = require("discord-api-types/v10");
 const {getSuccessEmbed, getRolesUpdatedEmbed} = require("../../embed/embedCreation");
@@ -6,7 +7,7 @@ const {getResult} = require("../../database/dbFunctions");
 const {route} = require("../../functions/help/helpRouter");
 module.exports = {
     name: "interactionCreate",
-    async execute(event) {
+    async execute(event, db, log, client) {
         switch (event.type) {
             case InteractionType.ApplicationCommand: {
                 break;
@@ -42,19 +43,20 @@ module.exports = {
             const command = event.client.commands.get(event.commandName);
             if (!command) return;
             try {
-                await command.execute(event);
-            } catch (error) {
-                console.error(error);
+                log.info(`[${event.guild.name}] ${event.user.tag} used /${event.commandName}`)
+                await command.execute(event, db, log, client);
+             } catch (error) {
+                log.error(error.stack || error);
                 event.reply({
                     embeds: [new EmbedBuilder().setTitle(":x: Failure").setColor("#2e3036")
                         .setDescription(msg.error)
                         .addFields({
                             name: "Error message",
-                            value: `\`\`\`js\n${error.message}\`\`\``,
+                            value: `\`\`\`js\n${error}\`\`\``,
                             inline: true
                         }).setTimestamp().setFooter({text: msg.botdev})], ephemeral: true
                 });
-            }
+            } 
         } else if (event.type === InteractionType.MessageComponent) {
 
 
