@@ -10,5 +10,6 @@ module.exports = {
 
 
         // The whole text should be tracked in the database? For what and how do you want to get this information back?
+        await event.reply({content: "Your reputation is the dregs... Not worth talking about."})
     }
 }

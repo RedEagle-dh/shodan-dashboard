@@ -3,7 +3,7 @@ const {SlashCommandBuilder} = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("talk")
-        .setDescription("N"),
+        .setDescription("Small talk? Absolutely not."),
 
     async execute(event, db) {
         const replyMessages = JSON.parse(await db.get("answers")).talk;
