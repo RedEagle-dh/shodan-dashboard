@@ -2,7 +2,7 @@ const {SlashCommandBuilder} = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("insult")
-        .setDescription("N")
+        .setDescription("Insult a user")
         .addUserOption(option => option.setName("user").setDescription("N").setRequired(true)),
 
     async execute(event, db) {
