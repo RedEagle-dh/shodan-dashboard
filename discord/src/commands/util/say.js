@@ -7,6 +7,7 @@ module.exports = {
 
     async execute(event) {
         const msg = event.options.getString("message");
-        event.reply(msg);
+        event.reply({content: "Message sent!", ephemeral: true});
+        await event.channel.send(msg);
     }
 }
