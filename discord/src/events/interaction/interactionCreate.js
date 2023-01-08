@@ -16,10 +16,12 @@ module.exports = {
                 if (event.isButton()) {
 
                 } else if (event.isSelectMenu()) {
-                    const dropDownMenus = await getResult(`SELECT * FROM shodan.gamecategories`);
+
+                    const dropDownMenus = JSON.parse(await db.get("optin"));
+                    
                         if (event.customId === "help") {
                             await route(event.values[0], event);
-                        } else if (dropDownMenus.some(menu => menu.name === event.customId)) {
+                        } else if (dropDownMenus[event.customId] !== null || dropDownMenus[event.customId] !== undefined) {
                             const values = event.values;
                             const member = event.member;
                             const removed = [];

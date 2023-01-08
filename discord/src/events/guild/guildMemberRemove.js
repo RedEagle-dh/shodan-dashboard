@@ -24,7 +24,7 @@ module.exports = {
         const memberCountChannel = await guild.channels.cache.find(c => c.id === memberCountChannelId);
 
         if (memberCountChannel) {
-            memberCountChannel.setName(`👥 Members: ${guild.memberCount}`);
+            memberCountChannel.setName(`Members: ${guild.memberCount}`);
         }
     }
 }

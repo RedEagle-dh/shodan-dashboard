@@ -6,7 +6,7 @@ module.exports = {
     name: 'guildScheduledEventUpdate',
     async execute(oldEvent, newEvent, client) {
         // Event Announcement Kanal, falls nicht vorhanden, wird das Event nicht angekündigt
-        const channelid = await getResult(`SELECT channelid FROM shodan.channelsetup WHERE functionname = 'eventAnnouncement'`);
+        /* const channelid = await getResult(`SELECT channelid FROM shodan.channelsetup WHERE functionname = 'eventAnnouncement'`);
         if (channelid.length !== 0) {
             const url = newEvent.url;
             const channel = await client.channels.cache.find(c => c.id === channelid[0].channelid);
@@ -26,6 +26,6 @@ module.exports = {
                 await insert(`INSERT INTO shodan.scheduledevents (id, eventid, event, subscribers) VALUES (${getNewId(oldId)}, '${newEvent.id}', '${JSON.stringify(newEvent)}', '{"users": []}')`);
             }
 
-        }
+        } */
     }
 }
