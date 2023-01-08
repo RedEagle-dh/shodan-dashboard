@@ -11,7 +11,8 @@ const log = new Logger();
 const client = new Client({ intents: ["Guilds", "GuildMessages", "MessageContent", "GuildVoiceStates", "GuildMembers", "GuildPresences", "GuildScheduledEvents"],
     partials: [Partials.GuildScheduledEvent] })
 const fs = require("fs");
-const deploy = require("./deploycommands");
+
+const deploy = require("./deployCommands");
 
 redisAlive(db, log);
 variablesAlive(process, log);
