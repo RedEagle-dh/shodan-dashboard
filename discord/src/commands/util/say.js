@@ -3,7 +3,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("say")
         .setDescription("Say something")
-        .addStringOption(option => option.setName("message").setDescription("The message to say").setRequired(true)),
+        .addStringOption(option => option.setName("message").setDescription("The message to say").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event) {
         const msg = event.options.getString("message");

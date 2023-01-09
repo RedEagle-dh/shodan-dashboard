@@ -8,7 +8,7 @@ const { Client, Collection, EmbedBuilder, ActionRowBuilder, Partials} = require(
 
 const db = new getDatabase();
 const log = new Logger();
-const client = new Client({ intents: ["Guilds", "GuildMessages", "MessageContent", "GuildVoiceStates", "GuildMembers", "GuildPresences", "GuildScheduledEvents"],
+const client = new Client({ intents: ["Guilds", "GuildMessages", "MessageContent", "GuildVoiceStates", "GuildMembers", "GuildPresences", "GuildScheduledEvents", "DirectMessages", "DirectMessageTyping"],
     partials: [Partials.GuildScheduledEvent] })
 const fs = require("fs");
 

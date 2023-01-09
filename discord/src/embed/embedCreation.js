@@ -71,6 +71,32 @@ function getMemberLeaveEmbed(user, randomMsg) {
         .setDescription(`${user} ${randomMsg}`);
 }
 
+function bugReportDMEmbed(title, description, priority, event) {
+    return new EmbedBuilder().setColor("#2e3036").setTitle(`<:warning:1062042963443724408> A new bug was found!`)
+        .addFields(
+            {
+                name: `Title`,
+                value: `${title}`,
+                inline: true
+            },
+            {
+                name: `\u200b`,
+                value: `\u200b`,
+                inline: true
+            },
+            {
+                name: `Priority`,
+                value: `${priority}`,
+                inline: true
+            },
+            {
+                name: `Description`,
+                value: `${description}`,
+                inline: true
+            }
+        ).setTimestamp();
+}
+
 
 module.exports =
     {
@@ -83,5 +109,6 @@ module.exports =
         getEventDmUpdateEmbed,
         getEventDmUnsubscribeEmbed,
         getMemberWelcomeEmbed,
-        getMemberLeaveEmbed
+        getMemberLeaveEmbed,
+        bugReportDMEmbed
     };
