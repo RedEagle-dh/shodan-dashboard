@@ -31,7 +31,8 @@ module.exports = {
             .setLabel(`Description`)
             .setPlaceholder(`A detailed explanation of the bug with description how to reproduce it (Screenshots as link).`)
             .setStyle(TextInputStyle.Paragraph)
-            .setRequired(true));
+            .setRequired(true)
+            .setMaxLength(1000));
 
         modal.addComponents(title, prio, description);
         await event.showModal(modal);

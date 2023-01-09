@@ -93,6 +93,11 @@ function bugReportDMEmbed(title, description, priority, event) {
                 name: `Description`,
                 value: `${description}`,
                 inline: true
+            },
+            {
+                name: "<:bughunter:1062065285064032447> Hunter",
+                value: `${event.user.tag} (${event.user.id})`,
+                inline: false
             }
         ).setTimestamp();
 }

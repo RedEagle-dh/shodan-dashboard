@@ -20,7 +20,10 @@ module.exports = {
                             break;
                         }
                         case "fixed": {
-                            await event.update({ components: [] });
+                            const eb = event.message.embeds[0];
+                            eb.data.fields[2].value = "Fixed";
+                            eb.data.title = "<:checkmark:1062042357769457764> This bug has been fixed.";
+                            await event.update({ components: [], embeds: [eb]});
                             break;
                         }
                         case "lowpriority": {
