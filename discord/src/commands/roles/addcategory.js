@@ -6,7 +6,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("addcategory")
         .setDescription("Adding a new drop down menu to the opt-in feature")
-        .addStringOption(option => option.setName("name").setDescription("The id/name for the dropdown menu (needed for deletion and adding games)").setRequired(true)),
+        .addStringOption(option => option.setName("name").setDescription("The id/name for the dropdown menu (needed for deletion and adding games)").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event, db, log) {
         const name = event.options.getString("name");

@@ -6,7 +6,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("removecategory")
         .setDescription("Deletes a category (dropdown menu) from the opt-in feature")
-        .addStringOption(option => option.setName("categoryname").setDescription("The category you want to delete").setRequired(true)),
+        .addStringOption(option => option.setName("categoryname").setDescription("The category you want to delete").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event, db, log) {
         const category = event.options.getString("categoryname").toLowerCase();

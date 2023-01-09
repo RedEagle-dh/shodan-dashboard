@@ -6,7 +6,8 @@ module.exports = {
         .setDescription("Clearing a bunch of messages")
         .addStringOption(option => option.setName("keyword").setDescription("The contained keyword in the messages").setRequired(true))
         .addUserOption(option => option.setName("user").setDescription("The user who sent the messages").setRequired(true))
-        .addStringOption(option => option.setName("time").setDescription("The time when the oldest message to be deleted was written (max. 14d)").setRequired(true)),
+        .addStringOption(option => option.setName("time").setDescription("The time when the oldest message to be deleted was written (max. 14d)").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event) {
         const user = event.options.getUser("user");

@@ -7,7 +7,8 @@ module.exports = {
         .setName("removegame")
         .setDescription("Deletes an item from a specific category (dropdown menu) from the opt-in feature")
         .addStringOption(option => option.setName("gamename").setDescription("The game you want to delete").setRequired(true))
-        .addStringOption(option => option.setName("categoryname").setDescription("The category you want to delete the game from").setRequired(true)),
+        .addStringOption(option => option.setName("categoryname").setDescription("The category you want to delete the game from").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event, db, log) {
         const game = event.options.getString("gamename");

@@ -2,7 +2,8 @@ const {SlashCommandBuilder} = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("argue")
-        .setDescription("Don't you dare argue with me."),
+        .setDescription("Don't you dare argue with me.")
+        .setDMPermission(false),
 
     async execute(event) {
         // TODO

@@ -3,7 +3,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("insult")
         .setDescription("Insult a user")
-        .addUserOption(option => option.setName("user").setDescription("N").setRequired(true)),
+        .addUserOption(option => option.setName("user").setDescription("N").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event, db) {
         const replyMessages = JSON.parse(await db.get("answers")).insult;

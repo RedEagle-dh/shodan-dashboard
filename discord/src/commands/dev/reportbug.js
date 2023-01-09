@@ -3,7 +3,8 @@ const { ModalBuilder, TextInputStyle, SlashCommandBuilder, TextInputBuilder, Act
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("reportbug")
-        .setDescription("Report bugs here if you found one"),
+        .setDescription("Report bugs here if you found one")
+        .setDMPermission(false),
     async execute(event, db, log, client) {
         const modal = new ModalBuilder()
             .setCustomId('bugreport')

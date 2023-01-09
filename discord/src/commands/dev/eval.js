@@ -5,7 +5,8 @@ module.exports = {
         .setDescription("Evaluate javascript code")
         .addSubcommand(subcommand => subcommand.setName("invisible").setDescription("Evaluate javascript code inivisble").addStringOption(option => option.setName("code").setDescription("The code to evaluate").setRequired(true)))
         .addSubcommand(subcommand => subcommand.setName("visible").setDescription("Evaluate javascript code visible").addStringOption(option => option.setName("code").setDescription("The code to evaluate").setRequired(true)))
-    ,
+        .setDMPermission(false)
+        ,
     async execute(event, db, log) {
         const code = event.options.getString("code");
         if (event.member.id !== "324890484944404480") {

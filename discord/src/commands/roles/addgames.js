@@ -9,7 +9,8 @@ module.exports = {
         .addRoleOption(option => option.setName("role").setDescription("The role to give").setRequired(true))
         .addStringOption(option => option.setName("category").setDescription("The category name/id to add the game to").setRequired(true))
         .addStringOption(option => option.setName("emoji").setDescription("The emoji to use for the game").setRequired(true))
-        .addStringOption(option => option.setName("description").setDescription("The description of the game").setRequired(true)),
+        .addStringOption(option => option.setName("description").setDescription("The description of the game").setRequired(true))
+        .setDMPermission(false),
 
     async execute(event, db, log) {
         const emoji = event.options.getString("emoji");

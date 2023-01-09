@@ -2,7 +2,8 @@ const {SlashCommandBuilder} = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("rep")
-        .setDescription("Let me tell you how high your reputation is."),
+        .setDescription("Let me tell you how high your reputation is.")
+        .setDMPermission(false),
 
     async execute(event) {
         // TODO

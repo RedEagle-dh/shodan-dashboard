@@ -4,7 +4,8 @@ const { createChannelDoc, createAnswersDoc, createOptInDoc, createEventDoc } = r
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("reset")
-        .setDescription("Database reset"),
+        .setDescription("Database reset")
+        .setDMPermission(false),
     async execute(event, db, log) {
         if (db === null) log.error("Couldn't reset database!");
         try {

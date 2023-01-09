@@ -6,7 +6,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("restart")
         .setDescription("Restart the bot")
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+        .setDMPermission(false),
 
     async execute(event, db, log) {
         event.reply({content: "Restarting...", ephemeral: true}).then(() => {

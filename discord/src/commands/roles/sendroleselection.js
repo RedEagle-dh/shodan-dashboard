@@ -5,7 +5,8 @@ const {getDropDownMenus} = require("../../functions/optinfunctions");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("sendoptin")
-        .setDescription("Sending the message for the opt-in feature"),
+        .setDescription("Sending the message for the opt-in feature")
+        .setDMPermission(false),
 
     async execute(event, db, log) {
         const menus = await getDropDownMenus(db);

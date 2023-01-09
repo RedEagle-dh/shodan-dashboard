@@ -6,6 +6,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("help")
         .setDescription("You need help? Here you go!")
+        .setDMPermission(false)
     ,
     async execute(event) {
         // FIXME Error when clicking on Select Menu
